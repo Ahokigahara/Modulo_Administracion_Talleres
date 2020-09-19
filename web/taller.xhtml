@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./Templates/TemplateMain.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="main" enctype="multipart/form-data">
+                        <p:panel id="regitro">
+                            <div align="center">
+                                <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="20" id="pnlG3">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3976.3745188301373!2d-74.2077675!3d4.7048322!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sco!4v1590717494942!5m2!1sen!2sco" 
+                                            width="600" height="450" frameborder="0" 
+                                            style="border:0;" allowfullscreen="" aria-hidden="false" 
+                                            tabindex="0">
+
+                                    </iframe>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" id="pnlG1">
+
+                                    <p:outputLabel value="Látitud Taller:" style="font-weight: bold"/>
+                                    <p:inputText id="inp1" value="#{cargarTalleresBean.latitud}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/> 
+
+                                    <p:outputLabel value="Lóngitud Taller:" style="font-weight: bold"/>
+                                    <p:inputText id="inp2" value="#{cargarTalleresBean.longitud}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/>
+
+                                    <p:outputLabel value="Nombre Taller:" style="font-weight: bold"/>
+                                    <p:inputText id="inp3" value="#{cargarTalleresBean.nombre}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/>
+
+                                    <p:outputLabel value="Dirección Taller:" style="font-weight: bold"/>
+                                    <p:inputText id="inp4" value="#{cargarTalleresBean.direccion}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/>
+
+                                    <p:outputLabel id="inp5" value="Teléfono Taller:" style="font-weight: bold"/>
+                                    <p:inputText value="#{cargarTalleresBean.telefono}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/> 
+
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" id="pnlG2">
+
+                                    <p:commandButton value="Agregar" 
+                                                     actionListener="#{cargarTalleresBean.agregarTaller()}" 
+                                                     update="main">
+                                        <p:resetInput target=":main"/>
+                                    </p:commandButton>
+
+                                    <p:commandButton value="Enviar"  
+                                                     actionListener="#{cargarTalleresBean.cargar()}" 
+                                                     update="main">
+                                        <p:resetInput target=":main"/>
+                                    </p:commandButton>
+                                </h:panelGrid>
+
+                                <p:fileUpload label="Seleccionar archivo" value="#{cargarTalleresBean.file}" mode="simple" skinSimple="true"/>
+                                <br />
+                                <p:commandButton value="Cargar archivo" ajax="false" 
+                                                 action="#{cargarTalleresBean.upload}" 
+                                                 disabled="false"/>
+                            </div>  
+
+
+                        </p:panel>
+                        <p:panel id="tabla">
+                            <p:dataTable value="#{cargarTalleresBean.talleres}" var="taller" id="tbl">
+                                <f:facet name="header">
+                                    Lista de Talleres
+                                </f:facet>
+                                <p:column headerText="Latitud" style="width: 5%">
+                                    <h:outputText value="#{taller.latitud}" />
+                                </p:column>
+                                <p:column headerText="Longitud" style="width: 5%">
+                                    <h:outputText value="#{taller.longitud}" />
+                                </p:column>
+                                <p:column headerText="Nombre" style="width: 5%">
+                                    <h:outputText value="#{taller.nombre}" />
+                                </p:column>
+                                <p:column headerText="Direccion" style="width: 5%">
+                                    <h:outputText value="#{taller.direccion}" />
+                                </p:column>
+                                <p:column headerText="Telefono" style="width: 5%">
+                                    <h:outputText value="#{taller.telefono}" />
+                                </p:column>
+                            </p:dataTable>
+
+
+                        </p:panel>
+
+                    </h:form>
+
+                </f:view>
+            </ui:define>
+            
+        </ui:composition>
+    </h:body>
+</html>

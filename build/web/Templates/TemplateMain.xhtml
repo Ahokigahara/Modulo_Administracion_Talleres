@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top"></ui:insert>
+            <div id="menuBar">
+
+
+                <p:megaMenu style="margin-top:20px" styleClass="megaMenu">
+                    <p:submenu label="Servicios" icon="pi pi-check">
+                        <p:column>
+                            <p:submenu label="Servicios">
+                                <p:menuitem value="Registrar servicios" outcome="servicio" />
+                            </p:submenu>
+                        </p:column>                                   
+                    </p:submenu>
+
+                    <p:submenu label="Talleres" icon="pi pi-file">
+                        <p:column>
+                            <p:submenu label="Taller">
+                                <p:menuitem value="Registrar talleres" outcome="taller" />
+                            </p:submenu>
+                        </p:column>
+                    </p:submenu>
+
+
+                    <p:menuitem value="Principal" outcome="index" icon="pi pi-times" />
+                </p:megaMenu>
+
+
+            </div>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <div align="center">
+                        <p:graphicImage value="resources/img/ucentral.gif"  width="90" height="75"/>
+                    </div>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <div id="copyright" class="container" align="center">
+                    <p:outputLabel value="&copy; Práctica de Ingeniería IV | UNIVERSIDAD CENTRAL" style="font-weight: bold"/>
+
+                    <br></br>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" id="pnlG1">
+                        <p:outputLabel value="Megan Lucia Ulloa Rojas" style="font-weight: bold"/>
+                        <p:outputLabel value="mulloar@ucentral.edu.co" style="font-weight: bold"/>
+                        <p:outputLabel value="Andrés David Gómez Toledo" style="font-weight: bold"/>
+                        <p:outputLabel value="agomezt@ucentral.edu.co" style="font-weight: bold"/>
+
+
+                    </h:panelGrid>
+                </div>
+
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

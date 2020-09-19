@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./Templates/TemplateMain.xhtml">
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="main" enctype="multipart/form-data">
+                        <p:panel id="regitro">
+                            <div align="center">
+                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" id="pnlG1">
+
+                                    <p:outputLabel value="Nombre Servicio:" style="font-weight: bold"/>
+                                    <p:inputText id="inp1" value="#{cargarServiciosBean.nombre}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/> 
+
+                                    <p:outputLabel value="Grupo Servicio:" style="font-weight: bold"/>
+                                    <p:selectOneMenu id="numPreguntas" value="#{cargarServiciosBean.grupo}" 
+                                                     dynamic="true" style="width:125px"
+                                                     required="false" requiredMessage="Seleccione grupo">
+                                        <f:selectItem itemLabel="Seleccione grupo" itemValue="" />
+                                        <f:selectItems value="#{cargarServiciosBean.gruposReal}" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel id="inp2" value="Teléfono:" style="font-weight: bold"/>
+                                    <p:inputText value="#{cargarServiciosBean.telefono}" disabled="false"
+                                                 required="false" requiredMessage="Complete el campo Nombre Examen"/> 
+
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="20" id="pnlG2">
+
+                                    <p:commandButton value="Agregar Servicio" 
+                                                     actionListener="#{cargarServiciosBean.agregarServicio()}" 
+                                                     update="main">
+                                        <p:resetInput target=":main:numPreguntas"/>
+                                    </p:commandButton>
+
+                                    <p:commandButton value="Enviar archivo"  
+                                                     actionListener="#{cargarServiciosBean.cargar()}" 
+                                                     update="main">
+                                        <p:resetInput target=":main:numPreguntas"/>
+                                    </p:commandButton>
+
+                                </h:panelGrid>
+
+                                <p:fileUpload label="Seleccionar archivo" value="#{cargarServiciosBean.file}" mode="simple" skinSimple="true"/>
+                                <br />
+                                <p:commandButton value="Cargar archivo" ajax="false" 
+                                                 action="#{cargarServiciosBean.upload}" 
+                                                 disabled="false"/>
+                                
+                                <br/>
+                                <br/>
+                                <p:outputLabel id="inp3" value="#{cargarServiciosBean.mensajeAux}" style="font-weight: bold"/>
+                                
+                            </div>
+
+
+                        </p:panel>
+                        <p:panel id="tabla">
+                            <p:dataTable value="#{cargarServiciosBean.servicios}" var="servicio" id="tbl">
+                                <f:facet name="header">
+                                    Lista de servicios
+                                </f:facet>
+                                <!--
+                                <p:column headerText="Id" style="width: 5%">
+                                    <h:outputText value="#{servicio.id}" />
+                                </p:column>-->
+                                <p:column headerText="Grupo" style="width: 5%">
+                                    <h:outputText value="#{servicio.grupo}" />
+                                </p:column>
+                                <p:column headerText="Nombre" style="width: 5%">
+                                    <h:outputText value="#{servicio.nombre}" />
+                                </p:column>
+                                <p:column headerText="Telefono" style="width: 5%">
+                                    <h:outputText value="#{servicio.telefono}" />
+                                </p:column>
+                            </p:dataTable>
+
+
+                        </p:panel>
+
+                    </h:form>
+
+                </f:view>
+            </ui:define>
+            
+
+        </ui:composition>
+    </h:body>
+</html>
